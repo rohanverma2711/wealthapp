@@ -1,6 +1,6 @@
 ## Wealth App 
 
-This project was developed for Wealth App. It is an Home Page which contains the UI as well as the Captch funtionality.
+This project was developed for Wealth App. It is an Home Page which contains the UI as well as the Captcha funtionality.
 
 ## Available Scripts
 1) Clone the repository by git clone and go to the project directory:
