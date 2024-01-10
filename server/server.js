@@ -20,6 +20,7 @@ mongoose.connect(
 const codeSchema = new mongoose.Schema({
   value: { type: String, unique: true },
   createdAt: { type: Date, default: Date.now },
+  used:{type:Boolean}
 });
 
 const Code = mongoose.model("Code", codeSchema);
@@ -51,7 +52,7 @@ app.post("/api/codes/use", async (req, res) => {
 
     // Check if the code exists in the database
     const code = await Code.findOne({ value: enteredCode });
-
+    
     if (!code) {
       return res.status(400).json({ error: "Enter a valid code" });
     }
@@ -68,11 +69,11 @@ app.post("/api/codes/use", async (req, res) => {
     if (code.used) {
       return res.status(400).json({ error: "This code has already been used" });
     }
-
+    
     // Mark the code as used
     code.used = true;
-    await code.save();
-
+        await code.save();
+  
     res.json({ message: "Code is correct" });
   } catch (error) {
     console.error(error);
