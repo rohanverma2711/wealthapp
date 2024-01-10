@@ -6,9 +6,8 @@ const Captcha = () => {
   const [verificationResult, setVerificationResult] = useState("");
 
   const handleRefresh = async () => {
-    // Implement code refresh logic (fetching a new code from the server)
     try {
-      const response = await fetch("http://localhost:3000/api/codes");
+      const response = await fetch("http://localhost:3001/api/codes");
       const data = await response.json();
       setCode(data.code);
     } catch (error) {
@@ -17,9 +16,9 @@ const Captcha = () => {
   };
 
   const handleSubmit = async () => {
-    // Implement code verification logic (sending user input to the server)
+    // sending user input to the server
     try {
-      const response = await fetch("http://localhost:3000/api/codes/use", {
+      const response = await fetch("http://localhost:3001/api/codes/use", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +58,9 @@ const Captcha = () => {
         </div>
 
         {/* Verification Result */}
-        <div>{verificationResult && <p>{verificationResult}</p>}</div>
+        <div className="flex flex-row justify-center">
+          {verificationResult && <p>{verificationResult}</p>}
+        </div>
       </div>
     </div>
   );
